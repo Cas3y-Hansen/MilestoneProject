@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layouts/defaultTemplate">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Hello, world!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+</head>
+
+<body>
+    <div th:replace="layouts/common :: header"></div>
+    <section layout:fragment="content" class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form action="#" th:action="@{doLogin}" th:object="${loginModel}" method="post"
+                      class="border p-4 rounded bg-light">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">User Name:</label>
+                        <input type="text" id="username" th:field="*{username}" class="form-control" />
+                        <div class="text-danger small" th:if="${#fields.hasErrors('username')}"
+                             th:errors="*{username}">User Name Error</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password:</label>
+                        <input type="password" id="password" th:field="*{password}" class="form-control" />
+                        <div class="text-danger small" th:if="${#fields.hasErrors('password')}"
+                             th:errors="*{password}">Password Error</div>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <div th:replace="layouts/common :: footer"></div>
+</body>
+</html>
