@@ -1,6 +1,6 @@
 package com.milestone.controller;
 
-import com.milestone.model.LoginModel;
+import com.milestone.model.RegisterModel;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,27 +11,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/login")
-public class LoginController {
+@RequestMapping("/register")
+public class RegisterController {
 
     @GetMapping("/")
     public String display(Model model) {
-        model.addAttribute("title", "Login");
-        model.addAttribute("loginModel", new LoginModel());
-        return "login"; 
+        model.addAttribute("title", "Register");
+        model.addAttribute("registerModel", new RegisterModel());
+        return "register";
     }
 
-    @PostMapping("/doLogin")
-    public String doLogin(@Valid @ModelAttribute("loginModel") LoginModel loginModel,
-                          BindingResult bindingResult,
-                          Model model) {
+    @PostMapping("/doRegister")
+    public String doRegister(@Valid @ModelAttribute("registerModel") RegisterModel registerModel,
+                             BindingResult bindingResult,
+                             Model model) {
 
         if (bindingResult.hasErrors()) {
-            model.addAttribute("title", "Login");
-            return "login";
+            model.addAttribute("title", "Register");
+            return "register";
         }
 
-        // Redirect to All Books after login
+        // Redirect to All Books after registration
         return "redirect:/allbooks";
     }
 }

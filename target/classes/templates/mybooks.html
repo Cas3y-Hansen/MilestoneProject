@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layouts/defaultTemplate">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${title}">My Books</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+</head>
+<body>
+    <div th:replace="layouts/common :: header"></div>
+    <section layout:fragment="content" class="container mt-5">
+        
+
+        <div class="row">
+            <div class="col-md-4 mb-4" th:each="book : ${books}">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${book.title}">Book Title</h5>
+                        <p class="card-text"><strong>Author:</strong> <span th:text="${book.author}">Author Name</span></p>
+                        <p class="card-text"><strong>Genre:</strong> <span th:text="${book.genre}">Genre</span></p>
+                        <p class="card-text" th:text="${book.available} ? 'Available' : 'Checked Out'">Availability</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button class="btn btn-danger" th:disabled="${book.available}">Return</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div th:replace="layouts/common :: footer"></div>
+</body>
+</html>
