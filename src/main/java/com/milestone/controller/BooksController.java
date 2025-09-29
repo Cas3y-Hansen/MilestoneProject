@@ -8,9 +8,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controller for managing book-related endpoints
+ */
 @Controller
 public class BooksController {
 
+    /**
+     * Displays the user's personal book collection
+     * @param model the model to hold view data
+     * @return the mybooks view template
+     */
     @GetMapping("/mybooks")
     public String myBooks(Model model) {
 
@@ -24,6 +32,11 @@ public class BooksController {
         return "mybooks";
     }
 
+    /**
+     * Displays all available books in the library
+     * @param model the model to hold view data
+     * @return the allbooks view template
+     */
     @GetMapping("/allbooks")
     public String allBooks(Model model) {
 

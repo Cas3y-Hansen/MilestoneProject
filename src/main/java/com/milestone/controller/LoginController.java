@@ -10,10 +10,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * Controller for handling user login functionality
+ */
 @Controller
 @RequestMapping("/login")
 public class LoginController {
 
+    /**
+     * Displays the login form page
+     * @param model the model to hold view data
+     * @return the login view template
+     */
     @GetMapping("/")
     public String display(Model model) {
         model.addAttribute("title", "Login");
@@ -21,6 +29,13 @@ public class LoginController {
         return "login"; 
     }
 
+    /**
+     * Processes the login form submission
+     * @param loginModel the login data from the form
+     * @param bindingResult validation results
+     * @param model the model to hold view data
+     * @return redirect to allbooks on success, or login view on error
+     */
     @PostMapping("/doLogin")
     public String doLogin(@Valid @ModelAttribute("loginModel") LoginModel loginModel,
                           BindingResult bindingResult,

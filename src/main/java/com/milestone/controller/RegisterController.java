@@ -10,10 +10,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * Controller for handling user registration functionality
+ */
 @Controller
 @RequestMapping("/register")
 public class RegisterController {
 
+    /**
+     * Displays the registration form page
+     * @param model the model to hold view data
+     * @return the register view template
+     */
     @GetMapping("/")
     public String display(Model model) {
         model.addAttribute("title", "Register");
@@ -21,6 +29,13 @@ public class RegisterController {
         return "register";
     }
 
+    /**
+     * Processes the registration form submission
+     * @param registerModel the registration data from the form
+     * @param bindingResult validation results
+     * @param model the model to hold view data
+     * @return redirect to allbooks on success, or register view on error
+     */
     @PostMapping("/doRegister")
     public String doRegister(@Valid @ModelAttribute("registerModel") RegisterModel registerModel,
                              BindingResult bindingResult,
