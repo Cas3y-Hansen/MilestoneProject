@@ -10,15 +10,18 @@
 </head>
 
 <body>
-    <div th:replace="layouts/common :: header"></div>
+    <div th:replace="~{layouts/common :: header}"></div>
     <section layout:fragment="content" class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <form action="#" th:action="@{doLogin}" th:object="${loginModel}" method="post"
                       class="border p-4 rounded bg-light">
+                        <div class="alert alert-danger mt-2" th:if="${#fields.hasGlobalErrors()}"
+                        th:each="e : ${#fields.globalErrors()}" th:text="${e}"></div>
                     <div class="mb-3">
                         <label for="username" class="form-label">User Name:</label>
                         <input type="text" id="username" th:field="*{username}" class="form-control" />
+                        
                         <div class="text-danger small" th:if="${#fields.hasErrors('username')}"
                              th:errors="*{username}">User Name Error</div>
                     </div>
@@ -35,6 +38,6 @@
             </div>
         </div>
     </section>
-    <div th:replace="layouts/common :: footer"></div>
+    <div th:replace="~{layouts/common :: footer}"></div>
 </body>
 </html>
