@@ -6,8 +6,8 @@ package com.milestone.model;
 public class BookModel {
 
     private Long id;
-    private String title;
-    private String author;
+    @jakarta.validation.constraints.NotBlank private String title;
+    @jakarta.validation.constraints.NotBlank private String author;
     private String genre;
     private boolean available;  // true = can checkout
 
@@ -20,11 +20,18 @@ public class BookModel {
      * @param available whether the book is available for checkout
      */
     public BookModel(Long id, String title, String author, String genre, boolean available) {
+
         this.id = id;
+
+
         this.title = title;
         this.author = author;
         this.genre = genre;
         this.available = available;
+    }
+
+    public BookModel() {
+        
     }
 
     // Getters & Setters

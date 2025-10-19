@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div th:replace="layouts/common :: header"></div>
+    <div th:replace="~{layouts/common :: header}"></div>
 
     <section layout:fragment="content" class="container mt-5">
         <div class="row justify-content-center">
@@ -75,6 +75,6 @@
         </div>
     </section>
 
-    <div th:replace="layouts/common :: footer"></div>
+    <div th:replace="~{layouts/common :: footer}"></div>
 </body>
 </html>

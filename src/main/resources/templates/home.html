@@ -10,7 +10,7 @@
 
 <body>
     <!-- Header fragment -->
-    <div th:replace="layouts/common :: header"></div>
+    <div th:replace="~{layouts/common :: header}"></div>
 
     <!-- Main content -->
     <section layout:fragment="content" class="container mt-5">
@@ -28,6 +28,6 @@
     </section>
 
     <!-- Footer fragment -->
-    <div th:replace="layouts/common :: footer"></div>
+    <div th:replace="~{layouts/common :: footer}"></div>
 </body>
 </html>
