@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+
 /**
  * Repository interface for accessing user data from the database.
  */

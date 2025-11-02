@@ -47,6 +47,7 @@ public class BookServiceImpl implements BookService {
         }
     }
 
+    
     /**
      * Retrieves all books from the database.
      *

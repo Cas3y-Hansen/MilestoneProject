@@ -5,6 +5,7 @@ import com.milestone.model.RegisterModel;
 import com.milestone.repository.UserRepository;
 import com.milestone.service.AuthService;
 
+
 /**
  * Implementation of the {@link AuthService} interface that provides authentication
  * logic by verifying user credentials stored in the database.

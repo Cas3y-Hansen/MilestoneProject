@@ -6,6 +6,7 @@ import com.milestone.model.RegisterModel;
 import com.milestone.repository.UserRepository;
 import com.milestone.service.RegistrationService;
 
+
 /**
  * Implementation of the {@link RegistrationService} interface.
  * 

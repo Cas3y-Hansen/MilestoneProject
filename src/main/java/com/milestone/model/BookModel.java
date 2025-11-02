@@ -8,6 +8,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table("books")
 public class BookModel {
 
+	
 	@Id
     private Long id;
     @jakarta.validation.constraints.NotBlank private String title;
