@@ -1,5 +1,9 @@
 package com.milestone.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
+import org.springframework.data.annotation.Transient;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -7,7 +11,11 @@ import jakarta.validation.constraints.Size;
 /**
  * Model class for user registration form data
  */
+@Table("users")
 public class RegisterModel {
+    
+    @Id
+    private Long id;
 
     @NotNull(message = "First name is required")
     @Size(min = 1, max = 32)
@@ -33,10 +41,16 @@ public class RegisterModel {
     @Size(min = 1, max = 32)
     private String password;
 
+    /**
+     * This field is used only for form validation and is NOT persisted
+     * to the database.
+     */
+    @Transient
     @NotNull(message = "Confirm Password is required")
     private String confirmPassword;
 
     // Getters and Setters for all fields
+
     /** @return the first name */
     public String getFirstName() { return firstName; }
     /** @param firstName the first name to set */
@@ -71,4 +85,9 @@ public class RegisterModel {
     public String getConfirmPassword() { return confirmPassword; }
     /** @param confirmPassword the confirm password to set */
     public void setConfirmPassword(String confirmPassword) { this.confirmPassword = confirmPassword; }
+    
+    /** @return the user ID */
+    public Long getId() { return id; }
+    /** @param id the user ID to set */
+    public void setId(Long id) { this.id = id; }
 }

@@ -1,10 +1,14 @@
 package com.milestone.model;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 /**
  * Model class representing a book in the library system
  */
+@Table("books")
 public class BookModel {
 
+	@Id
     private Long id;
     @jakarta.validation.constraints.NotBlank private String title;
     @jakarta.validation.constraints.NotBlank private String author;
@@ -22,8 +26,6 @@ public class BookModel {
     public BookModel(Long id, String title, String author, String genre, boolean available) {
 
         this.id = id;
-
-
         this.title = title;
         this.author = author;
         this.genre = genre;

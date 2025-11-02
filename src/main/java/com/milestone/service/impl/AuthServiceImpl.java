@@ -1,41 +1,37 @@
 package com.milestone.service.impl;
 
 import org.springframework.stereotype.Service;
+import com.milestone.model.RegisterModel;
+import com.milestone.repository.UserRepository;
 import com.milestone.service.AuthService;
-import java.util.Map;
 
 /**
- * Implementation of the {@link AuthService} interface that provides basic
- * authentication logic for verifying user credentials.
+ * Implementation of the {@link AuthService} interface that provides authentication
+ * logic by verifying user credentials stored in the database.
  * <p>
- * This implementation uses a simple hardcoded user map for demonstration
- * purposes. In a production environment, authentication would typically be
- * handled through a database or an external authentication service.
+ * This implementation uses {@link UserRepository} to check if a username exists
+ * and whether the provided password matches the stored password.
  * </p>
  * 
  * @author Casey
- * @version 1.0
+ * @version 1.1
  */
 @Service
 public class AuthServiceImpl implements AuthService {
 
-    /**
-     * A static, hardcoded map of valid usernames and passwords.
-     * <p>
-     * Currently, this map contains a single user entry:
-     * <ul>
-     *   <li>Username: {@code admin}</li>
-     *   <li>Password: {@code password}</li>
-     * </ul>
-     * </p>
-     */
-    private static final Map<String, String> USERS = Map.of(
-            "admin", "password"
-    );
+    private final UserRepository userRepository;
 
     /**
-     * Authenticates a user by checking whether the provided username and password
-     * match an entry in the {@link #USERS} map.
+     * Constructor to inject {@link UserRepository}.
+     * @param userRepository repository used to access user data
+     */
+    public AuthServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    /**
+     * Authenticates a user by checking the username and password
+     * against the stored user records in the database.
      *
      * @param username the username to authenticate; cannot be {@code null}
      * @param password the password to check against the stored credentials; cannot be {@code null}
@@ -45,7 +41,9 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public boolean authenticate(String username, String password) {
         if (username == null || password == null) return false;
-        String expected = USERS.get(username.trim());
-        return expected != null && expected.equals(password);
+
+        return userRepository.findByUsername(username.trim())
+                             .map(user -> user.getPassword().equals(password))
+                             .orElse(false);
     }
 }

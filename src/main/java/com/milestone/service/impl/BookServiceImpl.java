@@ -1,66 +1,71 @@
 package com.milestone.service.impl;
 
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.milestone.model.BookModel;
+import com.milestone.repository.BookRepository;
 import com.milestone.service.BookService;
 
 /**
  * Implementation of the {@link BookService} interface that manages
- * book data in memory. This simple service maintains a thread-safe
- * list of books and allows retrieval and addition of book entries.
+ * book data in a database using Spring Data JPA.
  *
- * <p><b>Note:</b> This is an in-memory implementation using
- * {@link CopyOnWriteArrayList} and is not connected to a database.
- * It is designed for demonstration and testing purposes.</p>
+ * <p>This service provides methods to retrieve and add books via
+ * the {@link BookRepository} interface, which communicates with
+ * the underlying database.</p>
  *
+ * <p><b>Note:</b> This replaces the previous in-memory implementation
+ * with a persistent data layer while preserving the same structure
+ * and logic flow.</p>
+ * 
  * @author Casey
- * @version 1.0
+ * @version 2.0
  */
 @Service
 public class BookServiceImpl implements BookService {
 
-    /** Thread-safe list of books maintained in memory. */
-    private final List<BookModel> books = new CopyOnWriteArrayList<>();
+    /** Repository interface for performing CRUD operations on Book entities. */
+    private final BookRepository bookRepository;
 
     /**
-     * Initializes the service with a small collection of default books.
+     * Constructs the BookServiceImpl with an injected BookRepository.
+     * Adds initial demo books if the database is empty.
      */
-    public BookServiceImpl() {
-        books.add(new BookModel() {{
-            setTitle("Clean Code");
-            setAuthor("Robert C. Martin");
-            setGenre("Software");
-            setAvailable(true);
-        }});
-        books.add(new BookModel() {{
-            setTitle("The Pragmatic Programmer");
-            setAuthor("Andrew Hunt and David Thomas");
-            setGenre("Software");
-            setAvailable(true);
-        }});
+    
+    public BookServiceImpl(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+
+        // Initialize demo books only if DB is empty
+        if (bookRepository.count() == 0) {
+            BookModel book1 = new BookModel(null, "Clean Code", "Robert C. Martin", "Software", true);
+            BookModel book2 = new BookModel(null, "The Pragmatic Programmer", "Andrew Hunt and David Thomas", "Software", true);
+            bookRepository.save(book1);
+            bookRepository.save(book2);
+        }
     }
 
     /**
-     * Retrieves all books currently stored in memory.
+     * Retrieves all books from the database.
      *
      * @return a list containing all {@link BookModel} objects
      */
     @Override
     public List<BookModel> findAll() {
+        List<BookModel> books = new java.util.ArrayList<>();
+        bookRepository.findAll().forEach(books::add);
         return books;
     }
 
     /**
-     * Adds a new book to the in-memory collection.
+     * Adds a new book record to the database.
      *
      * @param book the {@link BookModel} instance to add
      */
     @Override
     public void add(BookModel book) {
-        books.add(book);
+        bookRepository.save(book);
     }
 }
