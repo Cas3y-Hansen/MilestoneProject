@@ -1,0 +1,17 @@
+com\milestone\repository\BookRepository.class
+com\milestone\repository\UserRepository.class
+com\milestone\service\impl\AuthServiceImpl.class
+com\milestone\model\LoginModel.class
+com\milestone\service\BookService.class
+com\milestone\service\impl\BookServiceImpl.class
+com\milestone\service\impl\RegistrationServiceImpl.class
+com\milestone\controller\RegisterController.class
+com\milestone\controller\ListingController.class
+com\milestone\MilestoneProjectApplication.class
+com\milestone\service\AuthService.class
+com\milestone\service\RegistrationService.class
+com\milestone\controller\BooksController.class
+com\milestone\controller\HomeController.class
+com\milestone\model\RegisterModel.class
+com\milestone\model\BookModel.class
+com\milestone\controller\LoginController.class
