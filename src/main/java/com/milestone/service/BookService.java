@@ -27,4 +27,10 @@ public interface BookService {
      * @param book the {@link BookModel} object to add
      */
     void add(BookModel book);
+    
+    BookModel findById(Long id);
+
+    BookModel update(BookModel book);
+
+    void deleteById(Long id);
 }

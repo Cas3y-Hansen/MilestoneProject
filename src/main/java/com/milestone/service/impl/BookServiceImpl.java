@@ -2,7 +2,6 @@ package com.milestone.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.milestone.model.BookModel;
@@ -69,4 +68,22 @@ public class BookServiceImpl implements BookService {
     public void add(BookModel book) {
         bookRepository.save(book);
     }
+    @Override
+    public BookModel findById(Long id) {
+        return bookRepository.findById(id)
+                .orElse(null); // or throw a custom exception if you prefer
+    }
+
+    @Override
+    public BookModel update(BookModel book) {
+        // save() updates if id is not null and exists
+        return bookRepository.save(book);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        bookRepository.deleteById(id);
+    }
+
+    
 }
