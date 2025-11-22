@@ -1,7 +1,10 @@
 package com.milestone.service.impl;
 
 import org.springframework.stereotype.Service;
+<<<<<<< HEAD
 import com.milestone.model.RegisterModel;
+=======
+>>>>>>> 89d1c399dd32c88b3f4aaa71c221fd83192f6e53
 import com.milestone.repository.UserRepository;
 import com.milestone.service.AuthService;
 

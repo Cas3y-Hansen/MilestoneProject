@@ -140,4 +140,8 @@ public class BooksController {
         ra.addFlashAttribute("message", "Book deleted (ID: " + id + ")");
         return "redirect:/allbooks";
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 89d1c399dd32c88b3f4aaa71c221fd83192f6e53

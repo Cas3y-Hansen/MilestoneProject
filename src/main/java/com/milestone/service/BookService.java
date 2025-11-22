@@ -33,4 +33,8 @@ public interface BookService {
     BookModel update(BookModel book);
 
     void deleteById(Long id);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 89d1c399dd32c88b3f4aaa71c221fd83192f6e53
