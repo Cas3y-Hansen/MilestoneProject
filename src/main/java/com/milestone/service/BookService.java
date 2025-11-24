@@ -9,32 +9,45 @@ import com.milestone.model.BookModel;
  * <p>Provides methods to retrieve all books and to add new books.
  * Implementations may use in-memory storage, database access, or other mechanisms.</p>
  * 
- * @author Casey
- * @version 1.0
+ * author Casey
+ * version 1.0
  */
 public interface BookService {
 
     /**
      * Retrieves a list of all books in the system.
      * 
-     * @return a {@link List} of {@link BookModel} objects representing all books
+     * @return a List of BookModel objects representing all books
      */
     List<BookModel> findAll();
 
     /**
      * Adds a new book to the system.
      * 
-     * @param book the {@link BookModel} object to add
+     * @param book the BookModel object to add
      */
     void add(BookModel book);
-    
+
+    /**
+     * Finds a book by its unique ID.
+     *
+     * @param id the ID of the book
+     * @return the BookModel if found, otherwise null
+     */
     BookModel findById(Long id);
 
+    /**
+     * Updates an existing book.
+     *
+     * @param book the updated BookModel
+     * @return the saved/updated BookModel
+     */
     BookModel update(BookModel book);
 
+    /**
+     * Deletes a book by its ID.
+     *
+     * @param id the ID of the book to delete
+     */
     void deleteById(Long id);
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 89d1c399dd32c88b3f4aaa71c221fd83192f6e53

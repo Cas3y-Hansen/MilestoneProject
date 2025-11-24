@@ -68,7 +68,7 @@
    			<groupId>org.springframework.boot</groupId>
     		<artifactId>spring-boot-starter-data-jdbc</artifactId>
 		</dependency>
-<<<<<<< HEAD
+
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -79,8 +79,8 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-crypto</artifactId>
 		</dependency>
-=======
->>>>>>> 89d1c399dd32c88b3f4aaa71c221fd83192f6e53
+
+
 
 		<!-- MySQL Connector -->
 		<dependency>

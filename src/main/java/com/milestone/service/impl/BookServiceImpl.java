@@ -20,8 +20,8 @@ import com.milestone.service.BookService;
  * with a persistent data layer while preserving the same structure
  * and logic flow.</p>
  * 
- * @author Casey
- * @version 2.0
+ * author Casey
+ * version 2.0
  */
 @Service
 public class BookServiceImpl implements BookService {
@@ -33,7 +33,6 @@ public class BookServiceImpl implements BookService {
      * Constructs the BookServiceImpl with an injected BookRepository.
      * Adds initial demo books if the database is empty.
      */
-    
     public BookServiceImpl(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
 
@@ -46,7 +45,6 @@ public class BookServiceImpl implements BookService {
         }
     }
 
-    
     /**
      * Retrieves all books from the database.
      *
@@ -68,15 +66,14 @@ public class BookServiceImpl implements BookService {
     public void add(BookModel book) {
         bookRepository.save(book);
     }
+
     @Override
     public BookModel findById(Long id) {
-        return bookRepository.findById(id)
-                .orElse(null); // or throw a custom exception if you prefer
+        return bookRepository.findById(id).orElse(null);
     }
 
     @Override
     public BookModel update(BookModel book) {
-        // save() updates if id is not null and exists
         return bookRepository.save(book);
     }
 
@@ -84,10 +81,4 @@ public class BookServiceImpl implements BookService {
     public void deleteById(Long id) {
         bookRepository.deleteById(id);
     }
-
-    
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 89d1c399dd32c88b3f4aaa71c221fd83192f6e53
