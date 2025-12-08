@@ -1,5 +1,7 @@
 package com.milestone;
 
+import org.springframework.security.config.Customizer;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -46,6 +48,7 @@ public class SecurityConfig {
                 .defaultSuccessUrl("/books/add", true)
                 .permitAll()
             )
+            .httpBasic(Customizer.withDefaults())
             .logout(logout -> logout
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login/")
